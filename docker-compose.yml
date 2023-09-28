@@ -1,20 +1,16 @@
-version: "2"
+version: "3.3"
 services:
   app:
-    build: ./app
-    # links:
-    #   - db
+    user: "${UID}"
+    build:
+      context: ./app
     ports:
-      - "5000:5000"
-    # depends_on:
-    #   - db
+      - "0.0.0.0:5000:8000"
+    networks:
+      - docNet
+    volumes:
+      - "./app:/app"
 
-  # db:
-  #   image: mysql:5.7
-  #   ports:
-  #     - "32000:3306"
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: root
-  #   volumes:
-  #     - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
-  #     - ./data:/var/lib/mysql
+networks:
+  docNet:
+    external: true

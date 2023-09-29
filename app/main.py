@@ -100,6 +100,7 @@ def update_emp():
 @app.route('/delete/<int:id>', methods=['DELETE'])
 def delete_emp(id):
     try:
+        print('aaaa', id)
         conn = mysql.connect()
         cursor = conn.cursor()
         cursor.execute("DELETE FROM emp WHERE id =%s", (id,))

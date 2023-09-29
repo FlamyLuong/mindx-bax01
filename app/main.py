@@ -97,7 +97,7 @@ def update_emp():
         conn.close()
 
 
-@app.route('/delete/', methods=['DELETE'])
+@app.route('/delete/<int:id>', methods=['DELETE'])
 def delete_emp(id):
     try:
         conn = mysql.connect()
